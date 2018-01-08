@@ -2,11 +2,13 @@ package company.by.myappp.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Egor on 08.01.2018.
  */
 
-public class User {
+public class User implements Serializable{
 
     @SerializedName("id")
     private long id;
