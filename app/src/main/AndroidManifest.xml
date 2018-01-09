@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="company.by.myappp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +19,20 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.MyService"/>
+        <service android:name=".service.UserService" />
+        <service android:name=".service.RepoService"/>
+
+        <activity
+            android:name=".RepoActivity"
+            android:label="@string/title_activity_repo"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.SHOW.REPO"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

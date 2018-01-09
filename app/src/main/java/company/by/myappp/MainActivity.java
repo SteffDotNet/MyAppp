@@ -1,6 +1,5 @@
 package company.by.myappp;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,21 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import company.by.myappp.adapter.UserAdapter;
 import company.by.myappp.model.User;
-import company.by.myappp.retrofit.GitHubAPI;
-import company.by.myappp.service.MyService;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import company.by.myappp.service.UserService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private UserAdapter adapter;
 
     private BroadcastReceiver broadcastReceiver;
-    public static final String BROADCAST_ACTION = "MyService";
+    public static final String BROADCAST_ACTION = "UserService";
     public static final int PENDING_CODE = 1;
 
     @Override
@@ -50,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
                 int status = intent.getIntExtra("status",0);
 
                 switch (status){
-                    case MyService.STATUS_ERROR:
+                    case UserService.STATUS_ERROR:
                         break;
 
-                    case MyService.STATUS_OK:
+                    case UserService.STATUS_OK:
                         ArrayList<User> users = (ArrayList<User>)intent.getSerializableExtra("users");
+                        String login = users.get(0).getLogin();
+                        Toast.makeText(MainActivity.this,"size = " + users.size() + "  " +  login,Toast.LENGTH_SHORT).show();
                         adapter = new UserAdapter(MainActivity.this, users);
                         recyclerView.setAdapter(adapter);
                         break;
@@ -65,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter(BROADCAST_ACTION);
         registerReceiver(broadcastReceiver, intentFilter);
 
-        startService(new Intent(MainActivity.this, MyService.class));
+        startService(new Intent(MainActivity.this, UserService.class));
 
     }
 }
