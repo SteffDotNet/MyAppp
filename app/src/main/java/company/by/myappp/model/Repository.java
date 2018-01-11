@@ -4,12 +4,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToOne;
+
 /**
  * Created by Egor on 09.01.2018.
  */
 
+@Entity
 public class Repository implements Serializable {
 
+    @Id(assignable = true)
     @SerializedName("id")
     private long id;
 
@@ -30,6 +36,8 @@ public class Repository implements Serializable {
 
     @SerializedName("language")
     private String language;
+
+    private ToOne<User> user;
 
     public Repository() {
     }
@@ -88,5 +96,13 @@ public class Repository implements Serializable {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public ToOne<User> getUser() {
+        return user;
+    }
+
+    public void setUser(ToOne<User> user) {
+        this.user = user;
     }
 }

@@ -77,5 +77,8 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.MyViewHolder> 
         }
     }
 
-
+    public void setRepos(List<Repository> repos) {
+        this.repos = repos;
+        notifyDataSetChanged();
+    }
 }

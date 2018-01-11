@@ -3,14 +3,22 @@ package company.by.myappp.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.sql.Blob;
+
+import io.objectbox.annotation.Backlink;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.annotation.NameInDb;
+import io.objectbox.relation.ToMany;
 
 /**
  * Created by Egor on 08.01.2018.
  */
 
+@Entity
 public class User implements Serializable{
 
-    @SerializedName("id")
+    @Id(assignable = true)
     private long id;
 
     @SerializedName("login")
@@ -24,6 +32,10 @@ public class User implements Serializable{
 
     @SerializedName("html_url")
     private String github_url;
+
+    @Backlink
+    ToMany<Repository> repos;
+
 
     public User() {
     }
@@ -66,5 +78,13 @@ public class User implements Serializable{
 
     public void setGithub_url(String github_url) {
         this.github_url = github_url;
+    }
+
+    public ToMany<Repository> getRepos() {
+        return repos;
+    }
+
+    public void setRepos(ToMany<Repository> repos) {
+        this.repos = repos;
     }
 }
