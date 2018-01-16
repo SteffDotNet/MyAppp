@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="company.by.myappp">
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -23,8 +24,7 @@
 
         <activity
             android:name=".view.RepoActivity"
-            android:label="@string/title_activity_repo"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/title_activity_repo">
 
             <intent-filter>
                 <action android:name="android.SHOW.REPO"/>

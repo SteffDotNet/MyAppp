@@ -5,57 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardCornerRadius="10dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="#ffffff">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:padding="5dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@mipmap/ic_user"/>
 
-        <LinearLayout
-            android:layout_toRightOf="@id/avatar"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/avatar"
+            android:maxLines="2"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:text="Login"/>
 
-            <TextView
-                android:id="@+id/login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:maxLines="2"
-                style="@style/Base.TextAppearance.AppCompat.Title"
-                android:text="Login"/>
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/avatar"
+            android:layout_below="@id/login"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:autoLink="web"
+            android:text="URL"/>
 
-            <TextView
-                android:id="@+id/type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                style="@style/Base.TextAppearance.AppCompat.Medium"
-                android:text="Type"/>
-
-            <TextView
-                android:id="@+id/url"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                style="@style/Base.TextAppearance.AppCompat.Small"
-                android:autoLink="web"
-                android:text="URL"/>
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/type"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_margin="3dp"
+            android:text="Type" />
 
     </RelativeLayout>
-
 
 </android.support.v7.widget.CardView>

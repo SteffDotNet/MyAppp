@@ -69,7 +69,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             public void onClick(View view) {
                 Intent intent = new Intent("android.SHOW.REPO");
                 intent.putExtra("id_user",getUser(myViewHolder.getAdapterPosition()).getId());
-                intent.putExtra("name", getUser(myViewHolder.getAdapterPosition()).getLogin());
                 context.startActivity(intent);
             }
         });
@@ -82,7 +81,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         User user = getUser(position);
 
         if(isConnected()){
-            Picasso.with(context).load(user.getAvatar_url()).placeholder(R.mipmap.ic_launcher_round).into(holder.avatar);
+            Picasso.with(context).load(user.getAvatar_url()).placeholder(R.mipmap.ic_user).into(holder.avatar);
         } else {
             DBService manger = new DBService(context);
             holder.avatar.setImageBitmap(manger.getPicture(user.getAvatar_url()));
@@ -107,4 +106,5 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         this.users = users;
         notifyDataSetChanged();
     }
+
 }

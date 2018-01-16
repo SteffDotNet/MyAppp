@@ -23,15 +23,12 @@ public class UserModel {
     private GitHubAPI api;
     private DBService dbService;
 
-    private UserAdapter userAdapter;
-
     public UserModel(Context context) {
         this.context = context;
         dbService = new DBService(context);
         compositeDisposable = new CompositeDisposable();
         api = GitHubService.getRetrofit().create(GitHubAPI.class);
         users = new ArrayList<>();
-        userAdapter = new UserAdapter(context, users);
     }
 
     public void setUsers(List<User> users) {
@@ -43,20 +40,12 @@ public class UserModel {
         return users;
     }
 
-    public void setUserAdapter(UserAdapter userAdapter) {
-        this.userAdapter = userAdapter;
-    }
-
     public CompositeDisposable getCompositeDisposable() {
         return compositeDisposable;
     }
 
     public GitHubAPI getApi() {
         return api;
-    }
-
-    public UserAdapter getUserAdapter() {
-        return userAdapter;
     }
 
     public Context getContext() {

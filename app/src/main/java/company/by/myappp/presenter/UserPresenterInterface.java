@@ -10,7 +10,5 @@ import company.by.myappp.view.MainViewInterface;
  */
 
 public interface UserPresenterInterface extends MvpPresenter<MainViewInterface> {
-    void show();
-    UserModel getModel();
-
+    void showUserList();
 }

@@ -6,10 +6,53 @@
     android:layout_height="match_parent"
     tools:context="company.by.myappp.view.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/layoutInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/avatarUser"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/loginUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/avatarUser"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+            android:text="Login"/>
+
+        <TextView
+            android:id="@+id/userURL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/avatarUser"
+            android:layout_below="@id/loginUser"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:autoLink="web"
+            android:text=""/>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#8f8b8a"
+            android:layout_below="@id/avatarUser"/>
+
+
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listRepos"
+        android:layout_below="@+id/layoutInfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scrollbars="vertical" />
+
 
 </RelativeLayout>

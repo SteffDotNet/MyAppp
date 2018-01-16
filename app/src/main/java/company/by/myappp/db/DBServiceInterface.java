@@ -13,9 +13,11 @@ import company.by.myappp.model.User;
 
 public interface DBServiceInterface {
     void saveUsers(List<User> users);
-    void saveRepos(long id, List<Repository> repos);
+    void saveRepos(long id_user, List<Repository> repos);
     void savePicture(String path);
+    User getUserById(long id);
     List<User> getUsers();
-    List<Repository> getRepos(long id);
+    List<Repository> getRepos(long id_user);
     Bitmap getPicture(String path);
+
 }

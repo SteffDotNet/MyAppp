@@ -1,8 +1,13 @@
 package company.by.myappp.presenter;
 
+import android.graphics.Bitmap;
+
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 
+import java.util.List;
+
 import company.by.myappp.model.RepoModel;
+import company.by.myappp.model.User;
 import company.by.myappp.view.RepoViewInterface;
 
 /**
@@ -10,6 +15,7 @@ import company.by.myappp.view.RepoViewInterface;
  */
 
 public interface RepoPresenterInterface extends MvpPresenter<RepoViewInterface> {
-    void show(String name);
-    RepoModel getModel();
+    void showRepoList(long id);
+    void showUserInfo(long id);
+    Bitmap getImage(String path);
 }

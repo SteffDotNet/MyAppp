@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import company.by.myappp.adapter.RepoAdapter;
+import company.by.myappp.db.DBService;
 import company.by.myappp.retrofit.GitHubAPI;
 import company.by.myappp.retrofit.GitHubService;
 import io.reactivex.disposables.CompositeDisposable;
@@ -18,9 +19,11 @@ public class RepoModel {
 
     private Context context;
     private List<Repository> repos;
-    private RepoAdapter repoAdapter;
     private CompositeDisposable compositeDisposable;
     private GitHubAPI api;
+    private DBService dbService;
+
+    private User user;
 
 
     public RepoModel(Context context) {
@@ -28,7 +31,7 @@ public class RepoModel {
         compositeDisposable = new CompositeDisposable();
         api = GitHubService.getRetrofit().create(GitHubAPI.class);
         repos = new ArrayList<>();
-        repoAdapter = new RepoAdapter(context, repos);
+        dbService = new DBService(context);
 
     }
 
@@ -44,15 +47,23 @@ public class RepoModel {
         return context;
     }
 
-    public RepoAdapter getRepoAdapter() {
-        return repoAdapter;
-    }
-
     public CompositeDisposable getCompositeDisposable() {
         return compositeDisposable;
     }
 
     public GitHubAPI getApi() {
         return api;
+    }
+
+    public DBService getDbService() {
+        return dbService;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

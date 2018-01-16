@@ -1,13 +1,12 @@
 package company.by.myappp.presenter;
 
 import android.content.Context;
-
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
-
-import java.util.List;
-
+import java.util.Random;
+import company.by.myappp.R;
+import company.by.myappp.model.SearchResult;
 import company.by.myappp.model.UserModel;
-import company.by.myappp.model.User;
+import company.by.myappp.service.ConnectivityService;
 import company.by.myappp.view.MainViewInterface;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -25,28 +24,33 @@ public class UserPresenter extends MvpBasePresenter<MainViewInterface> implement
     }
 
     @Override
-    public void show() {
-        model.getCompositeDisposable().add(model.getApi().getRandomUsers(10, 10)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this::handleError));
+    public void showUserList() {
+        Random random = new Random();
+        int since = random.nextInt(10000)+1;
+
+        if(ConnectivityService.isConnectInternet(model.getContext())){
+            model.getCompositeDisposable().add(model.getApi().getUsers()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(this::handleResponse, this::handleError));
+        }else{
+            model.setUsers(model.getDbService().getUsers());
+            getView().showListUsers(model.getUsers());
+            if(model.getUsers().size() > 0) getView().showMsg(model.getContext().getResources().getString(R.string.no_internet_сonn));
+            else getView().showMsg(model.getContext().getResources().getString(R.string.no_internet_сonn2));
+        }
     }
 
-    @Override
-    public UserModel getModel() {
-        return model;
-    }
-
-    private void handleResponse(List<User> list) {
-        model.setUsers(list);
+    private void handleResponse(SearchResult result) {
+        //Log.d("TAG", "getRandom : " + list.size());
+        model.setUsers(result.getUsers());
         model.getCompositeDisposable().clear();
-        model.getUserAdapter().setUsers(model.getUsers());
         model.getDbService().saveUsers(model.getUsers());
+
+        getView().showListUsers(result.getUsers());
     }
 
     private void handleError(Throwable t) {
-        model.setUsers(model.getDbService().getUsers());
-        model.getUserAdapter().setUsers(model.getUsers());
     }
 
 

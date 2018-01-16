@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">MyAppp</string>
+    <string name="app_name">GITHub search</string>
     <string name="title_activity_repo">RepoActivity</string>
+    <string name="no_load_repos">Репозитории данного пользователя не были загружены !</string>
+    <string name="no_internet_сonn">Интернет-соединение отсутствует, список пользователей загружен из базы данных!</string>
+    <string name="no_internet_сonn2">Интернет-соединение отсутствует, список пользователей не был загружен!</string>
 </resources>
